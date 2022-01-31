@@ -35,7 +35,11 @@
 		  {{ if $.Param "enableEditLinkFooter" }}
 		  {{ $root := .}}
 		    {{ with .FirstSection }}
-			  <p class="caption"><a href="{{ .Params.editBaseURL | default ($.Param "editBaseURL") }}{{ strings.TrimSuffix "/" ($root.Permalink | relLangURL) }}.md" target="_blank" rel="noreferrer">{{ i18n "edit-this-page" | default "Click here to contribute an edit to this page." }}</a></p>
+			  <p class="caption">
+			  {{ if .GitInfo }}
+			  <a href="{{ .Site.Params.github }}commit/{{ .GitInfo.Hash }}" target="_blank" rel="noreferrer">This page updated on {{ .GitInfo.AuthorDate | time.Format ":date_long" }} at {{ .GitInfo.AuthorDate | time.Format ":time_short" }}.</a>&nbsp;
+			  {{ end }}
+			  <a href="{{ .Params.editBaseURL | default ($.Param "editBaseURL") }}{{ strings.TrimSuffix "/" ($root.Permalink | relLangURL) }}.md" target="_blank" rel="noreferrer">{{ i18n "edit-this-page" | default "Click here to contribute an edit to this page." }}</a></p>
 			{{ end }}
 		  {{ end }}
         {{ end }}
