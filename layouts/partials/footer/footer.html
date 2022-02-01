@@ -37,9 +37,9 @@
 		    {{ with .FirstSection }}
 			  <p class="caption">
 			  {{ if .GitInfo }}
-			  <a href="{{ .Site.Params.github }}commit/{{ .GitInfo.Hash }}" target="_blank" rel="noreferrer">This page updated on {{ .GitInfo.AuthorDate | time.Format ":date_long" }} at {{ .GitInfo.AuthorDate | time.Format ":time_short" }}.</a>&nbsp;
+			  <a href="{{ .Site.Params.github }}commit/{{ .GitInfo.Hash }}" target="_blank" rel="noreferrer">{{ .GitInfo.AuthorDate.Format "This page was updated on January 6, 2006 at 5:00 am." }}</a>&nbsp;
 			  {{ end }}
-			  <a href="{{ .Params.editBaseURL | default ($.Param "editBaseURL") }}{{ strings.TrimSuffix "/" ($root.Permalink | relLangURL) }}.md" target="_blank" rel="noreferrer">{{ i18n "edit-this-page" | default "Click here to contribute an edit to this page." }}</a></p>
+			  <a href="{{ .Params.editBaseURL | default ($.Param "editBaseURL") }}{{ strings.TrimSuffix "/" ($root.Permalink | relLangURL) }}.md" target="_blank" rel="noreferrer">Click here to contribute an edit to this page.</a></p>
 			{{ end }}
 		  {{ end }}
         {{ end }}
